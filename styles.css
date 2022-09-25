@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --COLOR-ARTICLE-TEXT: rgb(136, 112, 215);
+    --COLOR-CELL-TEXT:rgb(49, 37, 87);
+    --COLOR-CELL-BACKGROUND: rgb(210, 203, 231);;
+    --COLOR-TABLE-BORDER: rgb(235, 226, 240);
+    --COLOR-TABLE-BACKGROUND: rgb(240, 233, 244);
+    --FONT-FAMILY: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+div {
+    text-align: center;
+}
+
+h1{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.table {
+    width: auto;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--COLOR-TABLE-BORDER);
+    border-radius: 25px;
+    padding: 10px;
+    margin: 30px;
+    background-color:var(--COLOR-TABLE-BACKGROUND);
+}
+.article{
+    font-weight: 900;
+    color: var(--COLOR-ARTICLE-TEXT) !important;
+    font-family: var(--FONT-FAMILY);
+}
+.column{
+    width: auto;
+    justify-content:space-evenly;
+}
+.cell{
+    height: 30px;
+    width: auto;
+    text-align: center;
+    align-items: center;
+    padding-top: 8px;
+    margin: 4px;
+    color: var(--COLOR-CELL-TEXT);
+    font-family: var(--FONT-FAMILY);
+    font-size: 20px;
+    border: transparent;
+    border-radius: 10px;
+    background-color: var(--COLOR-CELL-BACKGROUND);
+
+}
+
+@media only screen and (min-width:421px){
+  .table{
+    display: block;
+  }
+  .column{
+    width: auto;
+    display: flex;
+    flex-direction:row;
+  }
+   .column.first {
+      appearance: none;
+    }
+  
+}
+
+
+.container1{
+    display: grid;
+    height: 700px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+    grid-template-areas: 
+    "nav nav nav nav"
+    "sidebar main main main"
+    "sidebar content1 content2 content3"
+    "sidebar footer footer footer";
+}
+
+nav{
+    grid-area: nav;
+    background-color: aqua;
+}
+main{
+    grid-area: main;
+    background-color: rgb(99, 179, 179);
+}
+.sidebar {
+    grid-area: sidebar;
+    background-color: rgb(56, 93, 93);
+}
+.content1 {
+    grid-area: content1;
+    background-color: rgb(21, 154, 0);
+}
+.content2 {
+    grid-area: content2;
+    background-color: aqua;
+}
+.content3 {
+    grid-area: content3;
+    background-color: rgb(128, 0, 255);
+}
+footer {
+    grid-area: footer;
+    background-color: aqua;
+}
+
+@media only screen and (max-width:550px){
+    .container1{
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.4fr 0.4fr 2.2fr 1.2fr 1.2fr 1.2fr 1fr;
+        grid-template-areas: 
+        "nav"
+        "main"
+        "sidebar"
+        "content1"
+        "content2"
+        "content3"
+        "footer";
+    }
+    
+    
+}
+}
