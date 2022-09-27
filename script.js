@@ -1,4 +1,4 @@
-var article = [
+const article = [
   {
     group: "Group",
     company: "Company",
@@ -8,9 +8,7 @@ var article = [
   },
 ];
 
-buildArticle(article);
-
-var myData = [
+const myData = [
   {
     group: "TWICE",
     company: "JYP",
@@ -41,84 +39,73 @@ var myData = [
   },
 ];
 
-function buildArticle(data) {
-  var table = document.getElementById("article");
-  table.innerHTML = "";
-  for (var i = 0; i < data.length; i++) {
-    var row = `<div class="column first">
-      <div class="cell article">${data[i].group}</div>
-      <div class="cell article">${data[i].company}</div>
-      <div class="cell article">${data[i].amount}</div>
-      <div class="cell article">${data[i].album}</div>
-      <div class="cell article">${data[i].song}</div>
-    </div>`;
-    table.innerHTML += row;
-  }
-}
+const tableArticle = document.getElementById("article");
+const tableRows = document.getElementById("myData");
+const searchInput = document.querySelector("#search-input");
+const searchButton = document.querySelector("#search-button");
+const searchForm = document.querySelector("#search-form");
 
-buildTable(myData);
+const buildArticle = (cell) => {
+  tableArticle.innerHTML += `<div class="column first">
+                                <div class="cell article">${cell.group}</div>
+                                <div class="cell article">${cell.company}</div>
+                                <div class="cell article">${cell.amount}</div>
+                                <div class="cell article">${cell.album}</div>
+                                <div class="cell article">${cell.song}</div>
+                              </div>`;
+};
 
-function buildTable(data) {
-  var table = document.getElementById("myData");
-  table.innerHTML = "";
-  for (var i = 0; i < data.length; i++) {
-    var row = `<div class="column">     
-                <div class="cell first" data-label="Group">${data[i].group}</div>
-                <div class="cell" data-label="Company">${data[i].company}</div>
-                <div class="cell" data-label="Amount">${data[i].amount}</div>
-                <div class="cell" data-label="Album">${data[i].album}</div>
-                <div class="cell" data-label="Top Song">${data[i].song}</div>
-              </div>`;
-    table.innerHTML += row;
-  }
-}
+const buildTable = (cell) => {
+  tableRows.innerHTML += `<div class="column">     
+                            <div class="cell" id="first" data-label="Group">${cell.group}</div>
+                            <div class="cell" data-label="Company">${cell.company}</div>
+                            <div class="cell" data-label="Amount">${cell.amount}</div>
+                            <div class="cell" data-label="Album">${cell.album}</div>
+                            <div class="cell" data-label="Top Song">${cell.song}</div>
+                          </div>`;
+};
 
-function tableSearch() {
-  var value = document.getElementById("search-input").value;
-  var info = document.getElementById("info");
-  info.innerHTML = "";
-  var data = myData;
-  var filteredData = [];
-  var count = 0;
+const removeColor = (item) => {
+  item.forEach((e) => {
+    e.classList.remove("matched");
+  });
+};
 
-  for (var i = 0; i < data.length; i++) {
-    value = value.toString().toLowerCase();
-    var group = data[i].group.toString().toLowerCase();
+article.forEach(buildArticle);
+myData.forEach(buildTable);
 
-    if (group.includes(value)) {
+const formHandler = (event) => {
+  event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+  const firstColumn = document.querySelectorAll("#first");
+  let inputText = searchInput.value.toString().toLowerCase();
+  let count = 0;
+
+  removeColor(firstColumn);
+  searchInput.value = "";
+
+  for (i = 0; i < firstColumn.length; i++) {
+    count++;
+    if (
+      firstColumn[i].textContent.toString().toLowerCase().includes(inputText)
+    ) {
+      firstColumn[i].classList.add("matched");
       count++;
-      filteredData.push(data[i]);
     }
   }
 
   if (count == 0) {
-    info.innerHTML += "Nothing is found";
-    var button = document.getElementById("return");
-    button.style.display = "block";
-    var table = document.getElementById("container");
-    table.innerHTML = "";
-    buildTable(table);
+    info.innerHTML = "Nothing is found";
   } else {
-    info.innerHTML += "Number of matches found: " + count.toString();
-    var button = document.getElementById("return");
-    button.style.display = "block";
-    return buildTable(filteredData);
+    info.innerHTML = "Number of matches found: " + count.toString();
   }
+  document.getElementById("return").style.display = "block";
+};
+
+searchForm.addEventListener("submit", formHandler);
+
+function remove() {
+  document.getElementById("info").innerHTML = "";
+  document.getElementById("return").style.display = "none";
+  const firstColumn = document.querySelectorAll("#first");
+  removeColor(firstColumn);
 }
-
-
-function remove (){
-    var info = document.getElementById("info");
-    info.innerHTML = "";
-    var button = document.getElementById("return");
-    button.style.display = "none";
-
-    var table = document.getElementById("container");
-    table.innerHTML += `<div class="table" id = "table">
-    <div id="article"></div>
-    <div id="myData"></div>
-  </div>`;
-
-    buildArticle(article);
-    buildTable(myData);
-  }
