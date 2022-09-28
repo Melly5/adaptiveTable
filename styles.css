@@ -14,14 +14,6 @@
     "Lucida Sans", Arial, sans-serif;
 }
 
-body {
-  align-items: center;
-}
-
-div {
-  text-align: center;
-}
-
 h1 {
   text-align: center;
   margin-top: 20px;
@@ -47,30 +39,30 @@ h1 {
   border: 3px solid var(--COLOR-TABLE-BORDER);
   border-radius: 10px;
   font-family: var(--FONT-FAMILY);
-  color: var(--COLOR-PRIMARY-TEXT);
   font-size: 20px;
+  color: var(--COLOR-PRIMARY-TEXT);
 }
 
 #search-button,
 #return {
   width: 60px;
   height: 35px;
+  padding: 0 5px;
   border: 3px solid var(--COLOR-TABLE-BORDER);
   border-radius: 10px;
-  color: var(--COLOR-PRIMARY-TEXT) !important;
   font-family: var(--FONT-FAMILY);
   font-weight: 900;
   font-size: 15px;
-  padding-left: 5px;
-  padding-right: 5px;
+  color: var(--COLOR-PRIMARY-TEXT) !important;
 }
 
 #info {
+  margin: 10px;
+  text-align: center;
   font-family: var(--FONT-FAMILY);
   font-weight: 900;
   font-size: 20px;
   color: var(--COLOR-SECONDARY-TEXT);
-  margin: 10px;
 }
 
 #return {
@@ -85,21 +77,21 @@ h1 {
 #table {
   width: auto;
   max-width: 1600px;
-
+  padding: 10px;
+  margin: 0 auto;
   display: block;
   align-items: center;
   justify-content: center;
   border: 3px solid var(--COLOR-TABLE-BORDER);
   border-radius: 25px;
-  padding: 10px;
-  margin: 0 auto;
+
   background-color: var(--COLOR-TABLE-BACKGROUND);
 }
 
 .article {
   font-weight: 900;
-  color: var(--COLOR-PRIMARY-TEXT) !important;
   font-family: var(--FONT-FAMILY);
+  color: var(--COLOR-PRIMARY-TEXT) !important;
 }
 
 .column {

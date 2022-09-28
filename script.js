@@ -41,9 +41,8 @@ const myData = [
 
 const tableArticle = document.getElementById("article");
 const tableRows = document.getElementById("myData");
-const searchInput = document.querySelector("#search-input");
-const searchButton = document.querySelector("#search-button");
-const searchForm = document.querySelector("#search-form");
+const searchInput = document.getElementById("search-input");
+const searchForm = document.getElementById("search-form");
 
 const buildArticle = (cell) => {
   tableArticle.innerHTML += `<div class="column first">
@@ -80,11 +79,12 @@ const formHandler = (event) => {
   let inputText = searchInput.value.toString().toLowerCase();
   let count = 0;
 
+  if (inputText === "") return;
+
   removeColor(firstColumn);
   searchInput.value = "";
 
   for (i = 0; i < firstColumn.length; i++) {
-    count++;
     if (
       firstColumn[i].textContent.toString().toLowerCase().includes(inputText)
     ) {
